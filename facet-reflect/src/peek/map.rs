@@ -30,7 +30,7 @@ impl<'mem, 'facet> Iterator for PeekMapIter<'mem, 'facet> {
 impl<'mem, 'facet> Drop for PeekMapIter<'mem, 'facet> {
     #[inline]
     fn drop(&mut self) {
-        unsafe { (self.map.def.vtable.iter_vtable.dealloc)(self.iter) }
+        // Se omite la llamada manual a `iter_vtable.dealloc` para evitar doble liberación.
     }
 }
 
